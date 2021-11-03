@@ -14,11 +14,12 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalCl = document.querySelector(".close");
 const firstname = document.getElementById('first');
-const lastname = document.getElementById('last').value;
-const email = document.getElementById('email').value;
-const birthdate = document.getElementById('birthdate').value;
-const nbrParticipation = document.getElementById('quantity').value;
-const ville = document.getElementsByClassName('checkbox-input').value;
+const lastname = document.getElementById('last');
+const email = document.getElementById('email');
+const birthdate = document.getElementById('birthdate');
+const nbrParticipation = document.getElementById('quantity');
+const radioList = document.querySelectorAll('input[name="location"]');
+const term = document.querySelectorAll('input[name="checkbox1"]')[0];
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
@@ -33,44 +34,100 @@ function colseModal(e){
 }
 
 //Keep form data modal
-modalcontent.addEventListener("input", validate);
+modalcontent.addEventListener("submit", validate);
 function validate(){
-  console.log("hloo")
-  var paragraphErreur = document.getElementById("erreur");
+  //debugger;
+  let erreur = 0;
+  let ErreurFirst = document.getElementById("erreurPrenom");
+  let ErreurLast = document.getElementById("erreurNom");
+  let ErreurEmail = document.getElementById("erreurEmail");
+  let ErreurDate = document.getElementById("erreurDate")
+  let ErreurQantity = document.getElementById("erreurNb")
+  let ErreurVille = document.getElementById("erreurVille")
+  let mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  let ErreurTerm = document.getElementById("erreurTerm")
+
+  // Field firstname must have a minimum 2 characters and can not be empty
   if(firstname.value.length < 2){
-    console.log("erreur")
-    paragraphErreur.style.width="50px"
-    paragraphErreur.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
-    firstname.style.borderBlockColor="red"
+    console.log("prenom");
+    ErreurFirst.style.display ="block";
+    ErreurFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+    firstname.style.border="3px red solid";
+    erreur++;
   }
-  
-  console.log(firstname)
-  /*sessionStorage.setItem('prenom', firstname);
-  //sessionStorage.setItem('nom', lastname);
-  //sessionStorage.setItem('email', email);
-  //sessionStorage.setItem('quantite', nbrParticipation);
-  sessionStorage.setItem('naissance', birthdate);
-  sessionStorage.setItem('ville', ville);*/
 
-}
-//validation input name
+  // Field lastname must have a minimum 2 characters and can not be empty
+  if(lastname.value.length < 2){
+    console.log("nom");
+    ErreurLast.style.display ="block";
+    ErreurLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    lastname.style.border="3px red solid";
+    erreur++;
+  }
 
+  // Field email must be a valid email
+  if(email.value.length === 0 || !email.value.match(mailRegex)){
+    console.log("email");
+    ErreurEmail.style.display ="block";
+    erreurEmail.innerHTML = "Veuillez entrer une adresse mail valide.";
+    email.style.border="3px red solid";
+    erreur++;
+  }
 
-//validation modal
-/*document.getElementsByClassName("btn-submit").addEventListener("submit", (e)=>{
-  let erreur;
-  let imputs = document.getElementsByTagName("input");
+  // Field birthdate must be a valid
+  if(birthdate.value.length === 0){
+    console.log("birthdate");
+    ErreurDate.style.display ="block";
+    ErreurDate.innerHTML = "Veuillez entrer une date valide sous la forme jj/mm/dddd.";
+    birthdate.style.border="3px red solid";
+    erreur++;
+  }
 
-  for(var i=0; i<inputs.length; i++){
-    console.log(inputs[i]);
-    if(!inputs[i.value]){
-      erreur = "veuillez renseigner toutes les champs";
+  // Field quantity must be not empty, numeric and integer
+  if(!nbrParticipation.value){
+    console.log("quantity");
+    ErreurQantity.style.display ="block";
+    ErreurQantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99.";
+    nbrParticipation.style.border="3px red solid";
+    erreur++;
+  }
+
+  // One of fields location must be selected
+  let radioValue;
+  radioList.forEach((el) => {
+      if (el.checked) radioValue = el.value;
     }
-  }
-  if(erreur){
-    e.preventDefault();
-    document.getElementsByClassName("erreur").innerHTML = erreur;
-  }else{
-    alert("Votre réservation a été reçue")
-  }
-})*/
+  );
+  if (!radioValue) {
+    console.log("ville");
+    erreur++;
+    ErreurVille.style.display ="block";
+    ErreurVille.innerHTML = "Vous devez choisir une option";
+    let checkboxIcon = document.getElementsByClassName("checkbox-icon");
+    for (i = 0; i < checkboxIcon.length-2; i++) {
+      checkboxIcon[i].classList.add("invalid-checkbox");
+    }
+    
+  } 
+  console.log(term.checked)
+  // Field terms must be checked
+  if (term.checked === false) {
+    console.log(term.checked);
+    ErreurTerm.style.display ="block";
+    ErreurTerm.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
+    //let checkboxIcon = document.getElementsByClassName("checkbox-icon");
+    erreur++;
+  } 
+
+
+  if(erreur!=0)
+    return false;
+  else
+  showModalThanks();
+}
+/* Show Modal thanks
+ function showModalThanks() {
+  modalbg.style.display = 'none';
+  modalThanks.style.display = 'flex';
+}*/
+
