@@ -538,19 +538,24 @@ footer {
     opacity: 1;
   }
 }
-/* Thanks*/
+/*Modal Thanks*/
  
- .booking-thanks {
+#booking-thanks{
   display: none;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  margin: auto;
   height: 600px;
 }
 .booking-thanks-message {
   flex-grow: 1;
-  display: flex; align-items: center;
-  width: 309px;
+  display: flex; 
+  align-items: center;
+  width: 80%;
+  height: 90%;
   text-align: center;
   font-size: 30px;
   font-weight: 400;
+  margin: auto;
 }
