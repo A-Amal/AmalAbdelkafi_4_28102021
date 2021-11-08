@@ -145,7 +145,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 15% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -470,6 +470,9 @@ footer {
     width: 60%;
     padding: 10px;
   }
+  .content {
+    width: 99%;
+  }
   .topnav {
     overflow: hidden;
     margin: 20px 0 20px 10px;
@@ -479,7 +482,8 @@ footer {
   }
   main{
     padding: 0px;
-    width: 100%;
+    width: 90%;
+    margin: 1px auto 15px;
   }
   .hero-section {
     display: block;
@@ -508,7 +512,7 @@ footer {
   .hero-img img {
     border-radius: 5px;
     margin-top: 20px;
-    width: 92%;
+    width: 95%;
   }
   .hero-section > .btn-signup {
     display: block;
