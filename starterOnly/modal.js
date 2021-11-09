@@ -57,6 +57,8 @@ function validate(){
     ErreurFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
     firstname.style.border="3px red solid";
     erreur++;
+  }else{
+    firstname.style.border="3px green solid";
   }
 
   // Field lastname must have a minimum 2 characters and can not be empty
@@ -65,6 +67,8 @@ function validate(){
     ErreurLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     lastname.style.border="3px red solid";
     erreur++;
+  }else{
+    lastname.style.border="3px green solid";
   }
 
   // Field email must be a valid email
@@ -73,6 +77,8 @@ function validate(){
     erreurEmail.innerHTML = "Veuillez entrer une adresse mail valide.";
     email.style.border="3px red solid";
     erreur++;
+  }else{
+    email.style.border="3px green solid";
   }
 
   // Field birthdate must be a valid
@@ -82,6 +88,8 @@ function validate(){
     ErreurDate.innerHTML = "Veuillez entrer une date valide sous la forme jj/mm/dddd.";
     birthdate.style.border="3px red solid";
     erreur++;
+  }else{
+    birthdate.style.border="3px green solid";
   }
 
   // Field quantity must be not empty, numeric and integer
@@ -91,6 +99,8 @@ function validate(){
     ErreurQantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99.";
     nbrParticipation.style.border="3px red solid";
     erreur++;
+  }else{
+    nbrParticipation.style.border="3px green solid";
   }
 
   // One of fields location must be selected
