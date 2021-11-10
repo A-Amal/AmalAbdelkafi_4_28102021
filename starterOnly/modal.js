@@ -59,6 +59,7 @@ function validate(){
     erreur++;
   }else{
     firstname.style.border="3px green solid";
+    ErreurFirst.style.display ="none";
   }
 
   // Field lastname must have a minimum 2 characters and can not be empty
@@ -69,6 +70,7 @@ function validate(){
     erreur++;
   }else{
     lastname.style.border="3px green solid";
+    ErreurLast.style.display ="none";
   }
 
   // Field email must be a valid email
@@ -79,6 +81,7 @@ function validate(){
     erreur++;
   }else{
     email.style.border="3px green solid";
+    ErreurEmail.style.display ="none";
   }
 
   // Field birthdate must be a valid
@@ -90,6 +93,7 @@ function validate(){
     erreur++;
   }else{
     birthdate.style.border="3px green solid";
+    ErreurDate.style.display ="none";
   }
 
   // Field quantity must be not empty, numeric and integer
@@ -101,6 +105,7 @@ function validate(){
     erreur++;
   }else{
     nbrParticipation.style.border="3px green solid";
+    ErreurQantity.style.display ="none";
   }
 
   // One of fields location must be selected
