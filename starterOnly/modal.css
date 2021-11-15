@@ -247,6 +247,9 @@ input[data-error]::after {
 .invalid-checkbox{
   border: 2px solid red !important;
 }
+.valid-checkbox{
+  border: 2px solid rgb(83, 156, 83) !important;
+}
 .checkbox-input {
   display: none;
 }

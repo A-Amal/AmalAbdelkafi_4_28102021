@@ -58,7 +58,7 @@ function validate(){
     firstname.style.border="3px red solid";
     erreur++;
   }else{
-    firstname.style.border="3px green solid";
+    firstname.style.border="3px rgb(83, 156, 83) solid";
     ErreurFirst.style.display ="none";
   }
 
@@ -69,7 +69,7 @@ function validate(){
     lastname.style.border="3px red solid";
     erreur++;
   }else{
-    lastname.style.border="3px green solid";
+    lastname.style.border="3px rgb(83, 156, 83) solid";
     ErreurLast.style.display ="none";
   }
 
@@ -80,31 +80,29 @@ function validate(){
     email.style.border="3px red solid";
     erreur++;
   }else{
-    email.style.border="3px green solid";
+    email.style.border="3px rgb(83, 156, 83) solid";
     ErreurEmail.style.display ="none";
   }
 
   // Field birthdate must be a valid
   if(birthdate.value.length === 0){
-    console.log("birthdate");
     ErreurDate.style.display ="block";
     ErreurDate.innerHTML = "Veuillez entrer une date valide sous la forme jj/mm/dddd.";
     birthdate.style.border="3px red solid";
     erreur++;
   }else{
-    birthdate.style.border="3px green solid";
+    birthdate.style.border="3px rgb(83, 156, 83) solid";
     ErreurDate.style.display ="none";
   }
 
   // Field quantity must be not empty, numeric and integer
   if(!nbrParticipation.value){
-    console.log("quantity");
     ErreurQantity.style.display ="block";
     ErreurQantity.innerHTML = "Veuillez entrer un nombre entre 0 et 99.";
     nbrParticipation.style.border="3px red solid";
     erreur++;
   }else{
-    nbrParticipation.style.border="3px green solid";
+    nbrParticipation.style.border="3px rgb(83, 156, 83) solid";
     ErreurQantity.style.display ="none";
   }
 
@@ -123,13 +121,23 @@ function validate(){
       checkboxIcon[i].classList.add("invalid-checkbox");
     }
     
-  } 
+  } else {
+    ErreurVille.style.display ="none";
+    let checkboxIcon = document.getElementsByClassName("checkbox-icon");
+    for (i = 0; i < checkboxIcon.length-2; i++) {
+      checkboxIcon[i].classList.add("valid-checkbox");
+    }
+  }
   // Field terms must be checked
   if (term.checked === false) {
     ErreurTerm.style.display ="block";
     ErreurTerm.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
     erreur++;
+  }else{
+    ErreurTerm.style.display ="none";
   } 
+
+
   if(erreur!=0)
     return false;
   else{
